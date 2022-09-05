@@ -18,17 +18,9 @@ class Credentials extends Equatable {
 }
 
 class Person {
-  const Person(this.name);
+  Person(this.name);
 
   final String name;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Person && runtimeType == other.runtimeType && name == other.name;
-
-  @override
-  int get hashCode => name.hashCode;
 }
 
 class EquatableDemo extends StatefulWidget {
@@ -45,12 +37,22 @@ class _EquatableDemoState extends State<EquatableDemo> {
     const credentialsA = Credentials(username: 'ok', password: 'ab123');
     const credentialsB = Credentials(username: 'okGoogle', password: 'abc');
     const credentialsC = Credentials(username: 'okGoogle', password: 'abc');
+    var personA = Person("String");
+    var personC = Person('okGoogle');
+    var personB = Person('okGoogle');
     flutterPrint(msg: (credentialsA == credentialsA).toString());
     flutterPrint(msg: (credentialsB == credentialsB).toString());
     flutterPrint(msg: credentialsA.toString());
     flutterPrint(msg: (credentialsC == credentialsC).toString());
     flutterPrint(msg: (credentialsA == credentialsB).toString());
     flutterPrint(msg: (credentialsB == credentialsC).toString());
+
+    flutterPrint(msg: (personA.hashCode).toString());
+    flutterPrint(msg: (personB.hashCode).toString());
+    flutterPrint(msg: (personC.hashCode).toString());
+    flutterPrint(msg: (personA == personB).toString());
+    flutterPrint(msg: (personB == personC).toString());
+    flutterPrint(msg: (personA == personC).toString());
   }
 
   @override
